@@ -1,0 +1,13 @@
+===== BILL RECEIPT =====
+Customer Name: Yashika
+
+Items:
+1. buscuit | Qty: 2 | Item Total: Rs 20.00
+2. Chips | Qty: 3 | Item Total: Rs 60.00
+3. Lunchbox | Qty: 1 | Item Total: Rs 120.00
+
+Total: Rs 200.00
+Discount: Rs 0.00
+GST (18%): Rs 36.00
+Final Amount: Rs 236.00
+========================
