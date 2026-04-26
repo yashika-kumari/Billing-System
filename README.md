@@ -1,40 +1,48 @@
-# 💳 SmartBill Pro – Java OOP Billing Management System
+# 💳 Billing System – Java OOP Billing Management System
 
 ## 📌 Project Overview
-SmartBill Pro is a Java-based Object-Oriented Billing Management System designed to simulate real-world retail billing operations. The system provides bill generation, discount calculation, GST processing, payment method handling, and bill history tracking using Java Collections.
+A Java-based Object-Oriented Billing Management System with a user-friendly Swing GUI for managing multiple items per bill. The system provides real-time item addition, discount calculation, GST processing, and automatic bill file generation.
 
-This project demonstrates strong OOP principles, modular design, and scalable architecture suitable for future database or UI integration.
+This project demonstrates strong OOP principles, modular design, and scalable architecture suitable for retail and educational purposes.
 
 ---
 
 ## 🚀 Features
-- Menu-driven console interface
-- Customer bill generation
-- Discount calculation based on purchase amount
-- GST (18%) automatic calculation  
-- Payment processing (Card / UPI / Cash)
-- Processing fee calculation
-- Bill history tracking using ArrayList
-- Clean receipt format output
-- Input validation
+- Single-frame Swing GUI interface
+- Multi-item billing using ArrayList<Item>
+- Real-time item addition with live display
+- Discount calculation based on total amount (10% for >5000, 5% for >2000)
+- GST (18%) automatic calculation
+- Running total preview before final bill
+- Bill generation with formatted receipt
+- Automatic save to bill.txt file
+- Auto-open generated bill file
+- Input validation with error messages (JOptionPane)
+- Item details display (name, quantity, price, item total)
 
 ---
 
 ## 🛠 Technologies Used
-- Java  
-- Object-Oriented Programming (OOP)  
+- Java
+- Object-Oriented Programming (OOP)
 - Java Collections (ArrayList)
-- Console-based UI
+- Java Swing (GUI Framework)
+- File I/O (FileWriter)
 
 ---
 
 ## 📂 Project Structure
-SmartBill-Pro
+Billing-System/
 │
 ├── Customer.java
 ├── Bill.java
+├── Item.java
 ├── BillingService.java
+├── BillingGUI.java
 ├── SmartBillingSystem.java
+├── bill.txt (auto-generated)
+├── README.md
+└── .gitignore
 
 
 ---
@@ -42,62 +50,90 @@ SmartBill-Pro
 ## ⚙️ How to Run
 
 ### Step 1: Clone Repository
-git clone https://github.com/KVS-Manvith/smartbill-pro-java-oop-billing-system.git
-
+```bash
+git clone https://github.com/yashika-kumari/Billing-System.git
+```
 
 ### Step 2: Navigate to Project Folder
-cd smartbill-pro-java-oop-billing-system
-
+```bash
+cd Billing-System
+```
 
 ### Step 3: Compile Java Files
+```bash
 javac *.java
-
+```
 
 ### Step 4: Run Application
+```bash
 java SmartBillingSystem
+```
+
+A Swing GUI window will open. Use it to:
+1. Enter customer name
+2. Add items one by one (item name, price, quantity)
+3. View items in the display area
+4. Click "Generate Bill" to create formatted receipt
+5. Bill automatically saves to bill.txt and opens
 
 
 ---
 
 ## 📸 Sample Output
-===== SMART BILLING MENU =====
 
-Generate New Bill
+### GUI Window
+- Customer Name field
+- Item fields (name, price, quantity)
+- Add Item button
+- Generate Bill button
+- Display area showing items added
 
-View All Bills
-
-Exit
-
+### Generated Bill (bill.txt)
+```
 ===== BILL RECEIPT =====
-Customer Name : Rahul
-Purchase Amount: ₹5000
-Payment Method : CARD
-Discount : ₹250
-GST (18%) : ₹855
-Final Amount : ₹5605
+Customer Name: John Doe
+
+Items:
+1. Laptop | Qty: 1 | Item Total: Rs 50000.00
+2. Mouse | Qty: 2 | Item Total: Rs 2000.00
+3. Keyboard | Qty: 1 | Item Total: Rs 5000.00
+
+Total: Rs 57000.00
+Discount: Rs 5700.00
+GST (18%): Rs 9234.00
+Final Amount: Rs 60534.00
+========================
+```
 
 
 ---
 
 ## 🎯 Learning Outcomes
-- Applied Object-Oriented Programming concepts  
-- Implemented modular class-based design  
-- Worked with Java Collections for data storage  
-- Built real-world billing logic simulation  
+- Applied Object-Oriented Programming (OOP) principles
+- Implemented modular class-based design
+- Worked with Java Collections (ArrayList)
+- Built GUI with Java Swing framework
+- Handled file I/O operations
+- Implemented input validation and error handling
+- Structured multi-item billing logic  
 
 ---
 
 ## 🔮 Future Enhancements
-- Database Integration (MySQL + JDBC)  
-- File Storage for Bill Records  
-- JavaFX / Web UI  
+- Database Integration (MySQL + JDBC)
+- Bill history management
+- Customer profiles
+- Inventory management
+- Print functionality
+- Multiple bill management in GUI
+- JavaFX upgrade for modern UI
 - Spring Boot REST API Version  
 
 ---
 
-## 👨‍💻 Author
-**Kolla Venkata Sai Manvith**  
-CSE Student | Java Developer Learner  
+## 👨‍💻 Contributors
+**Yashika Kumari**  
+Java Developer | Software Engineer
 
 ---
 
