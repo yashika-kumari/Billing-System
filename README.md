@@ -133,7 +133,6 @@ Final Amount: Rs 60534.00
 
 ## 👨‍💻 Contributors
 **Yashika Kumari**  
-Java Developer | Software Engineer
 
 ---
 
