@@ -12,3 +12,7 @@ out/
 .DS_Store
 Thumbs.db
 
+# Generated Files
+bills/
+bill.txt
+

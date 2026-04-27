@@ -26,8 +26,18 @@ public class Bill {
         }
     }
 
+    public void removeItem(int index) {
+        if (index >= 0 && index < items.size()) {
+            items.remove(index);
+        }
+    }
+
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    public void clearItems() {
+        items.clear();
     }
 
     public double calculateTotal() {
@@ -65,32 +75,72 @@ public class Bill {
         double discount = calculateDiscount();
         double gst = calculateGST();
         double finalAmount = calculateFinalAmount();
+        
+        // Bill number - using timestamp as unique identifier
+        String billNumber = String.valueOf(System.currentTimeMillis() / 1000);
 
-        billBuilder.append("===== BILL RECEIPT =====\n");
-        billBuilder.append("Customer Name: ").append(customerName).append("\n\n");
-        billBuilder.append("Items:\n");
+        // Header
+        billBuilder.append("╔════════════════════════════════════════════════════════════════╗\n");
+        billBuilder.append("║                   DESKTOP BILLING SYSTEM                       ║\n");
+        billBuilder.append("║                      OFFICIAL RECEIPT                          ║\n");
+        billBuilder.append("╚════════════════════════════════════════════════════════════════╝\n\n");
 
+        // Bill Number and Date
+        billBuilder.append("Bill No: ").append(billNumber).append("                ");
+        billBuilder.append("Date: ").append(java.time.LocalDate.now()).append("\n");
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n\n");
+
+        // Customer Information
+        billBuilder.append("SOLD TO:\n");
+        billBuilder.append("Customer Name: ").append(customerName).append("\n");
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n\n");
+
+        // Items Header
+        billBuilder.append(String.format("%-4s | %-20s | %10s | %8s | %12s\n", 
+                "#", "ITEM NAME", "PRICE", "QTY", "TOTAL"));
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n");
+
+        // Items
         if (items.isEmpty()) {
             billBuilder.append("No items added.\n");
         } else {
             for (int i = 0; i < items.size(); i++) {
                 Item item = items.get(i);
-                billBuilder.append(i + 1)
-                        .append(". ")
-                        .append(item.getName())
-                        .append(" | Qty: ")
-                        .append(item.getQuantity())
-                        .append(" | Item Total: Rs ")
-                        .append(String.format("%.2f", item.getItemTotal()))
-                        .append("\n");
+                billBuilder.append(String.format("%-4d | %-20s | %10.2f | %8d | %12.2f\n",
+                        (i + 1),
+                        item.getName(),
+                        item.getPrice(),
+                        item.getQuantity(),
+                        item.getItemTotal()));
             }
         }
 
-        billBuilder.append("\nTotal: Rs ").append(String.format("%.2f", total)).append("\n");
-        billBuilder.append("Discount: Rs ").append(String.format("%.2f", discount)).append("\n");
-        billBuilder.append("GST (18%): Rs ").append(String.format("%.2f", gst)).append("\n");
-        billBuilder.append("Final Amount: Rs ").append(String.format("%.2f", finalAmount)).append("\n");
-        billBuilder.append("========================\n");
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n\n");
+
+        // Amounts Section
+        billBuilder.append(String.format("%-45s %20.2f\n", "Subtotal:", total));
+        
+        if (discount > 0) {
+            double discountPercent = total > 5000 ? 10 : 5;
+            billBuilder.append(String.format("%-45s %20.2f  (%d%%)\n", 
+                    "Discount:", discount, (int) discountPercent));
+        }
+        
+        billBuilder.append(String.format("%-45s %20.2f\n", "Subtotal After Discount:", total - discount));
+        billBuilder.append(String.format("%-45s %20.2f  (18%%)\n", "GST (Goods & Service Tax):", gst));
+        billBuilder.append("═════════════════════════════════════════════════════════════════\n");
+        billBuilder.append(String.format("%-45s %20.2f\n", "TOTAL AMOUNT DUE:", finalAmount));
+        billBuilder.append("═════════════════════════════════════════════════════════════════\n\n");
+
+        // Footer
+        billBuilder.append("Notes:\n");
+        billBuilder.append("• Discount applies on orders > Rs 5000 (10%) or > Rs 2000 (5%)\n");
+        billBuilder.append("• GST is calculated at 18% on discounted amount\n");
+        billBuilder.append("• Please retain this receipt for your records\n\n");
+        
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n");
+        billBuilder.append("           Thank you for your business! Visit Again!              \n");
+        billBuilder.append("─────────────────────────────────────────────────────────────────\n");
 
         return billBuilder.toString();
     }
