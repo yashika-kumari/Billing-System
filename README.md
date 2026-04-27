@@ -8,17 +8,19 @@ This project demonstrates strong OOP principles, modular design, and scalable ar
 ---
 
 ## 🚀 Features
-- Single-frame Swing GUI interface
+- **Tabbed Interface** - Separate tabs for Current Bill and Past Bills
 - Multi-item billing using ArrayList<Item>
 - Real-time item addition with live display
+- **Edit Item Details** - Modify price and quantity of added items
+- **Delete Items** - Remove items from the bill before finalizing
+- **View Past Bills** - Access all previously generated bills with timestamps
 - Discount calculation based on total amount (10% for >5000, 5% for >2000)
 - GST (18%) automatic calculation
-- Running total preview before final bill
-- Bill generation with formatted receipt
-- Automatic save to bill.txt file
-- Auto-open generated bill file
+- Professional invoice-style bill format with proper formatting
+- Bill persistence - Bills saved with customer name and timestamp
 - Input validation with error messages (JOptionPane)
-- Item details display (name, quantity, price, item total)
+- Item details display with edit/delete buttons
+- Reset Bill functionality - Start fresh billing
 
 ---
 
@@ -40,7 +42,9 @@ Billing-System/
 ├── BillingService.java
 ├── BillingGUI.java
 ├── SmartBillingSystem.java
-├── bill.txt (auto-generated)
+├── bills/                  (auto-generated directory for storing bills)
+├── bill.txt               (deprecated - auto-generated single bill file)
+├── ENHANCEMENTS.md        (detailed documentation of new features)
 ├── README.md
 └── .gitignore
 
@@ -69,12 +73,20 @@ javac *.java
 java SmartBillingSystem
 ```
 
-A Swing GUI window will open. Use it to:
+A Swing GUI window will open with two tabs:
+
+**Current Bill Tab:**
 1. Enter customer name
 2. Add items one by one (item name, price, quantity)
-3. View items in the display area
-4. Click "Generate Bill" to create formatted receipt
-5. Bill automatically saves to bill.txt and opens
+3. View items in the list panel with edit/delete options
+4. Edit item details or delete items as needed
+5. Click "Generate Bill" to create a professional receipt
+6. Bill automatically saves to bills/ folder with timestamp
+
+**Past Bills Tab:**
+1. View all previously generated bills
+2. Click any bill to view its complete details
+3. Use "Refresh List" to update the list
 
 
 ---
@@ -82,27 +94,46 @@ A Swing GUI window will open. Use it to:
 ## 📸 Sample Output
 
 ### GUI Window
-- Customer Name field
-- Item fields (name, price, quantity)
-- Add Item button
-- Generate Bill button
-- Display area showing items added
+- **Current Bill Tab**: Customer name field, item input fields, add item button, generate bill button, items list with edit/delete buttons
+- **Past Bills Tab**: List of past bills, bill content viewer, refresh button
 
-### Generated Bill (bill.txt)
+### Generated Bill (Professional Format)
 ```
-===== BILL RECEIPT =====
+╔════════════════════════════════════════════════════════════════╗
+║                   SMART BILLING SYSTEM                        ║
+║                      OFFICIAL RECEIPT                         ║
+╚════════════════════════════════════════════════════════════════╝
+
+Bill No: 1234567890               Date: 2026-04-27
+─────────────────────────────────────────────────────────────────
+
+SOLD TO:
 Customer Name: John Doe
+─────────────────────────────────────────────────────────────────
 
-Items:
-1. Laptop | Qty: 1 | Item Total: Rs 50000.00
-2. Mouse | Qty: 2 | Item Total: Rs 2000.00
-3. Keyboard | Qty: 1 | Item Total: Rs 5000.00
+#    | ITEM NAME            |      PRICE |      QTY |       TOTAL
+─────────────────────────────────────────────────────────────────
+1    | Laptop               |   50000.00 |        1 |   50000.00
+2    | Mouse                |    1000.00 |        2 |    2000.00
+3    | Keyboard             |    5000.00 |        1 |    5000.00
+─────────────────────────────────────────────────────────────────
 
-Total: Rs 57000.00
-Discount: Rs 5700.00
-GST (18%): Rs 9234.00
-Final Amount: Rs 60534.00
-========================
+Subtotal:                                            57000.00
+Discount:                                   5700.00  (10%)
+Subtotal After Discount:                              51300.00
+GST (Goods & Service Tax):                             9234.00  (18%)
+═════════════════════════════════════════════════════════════════
+TOTAL AMOUNT DUE:                                     60534.00
+═════════════════════════════════════════════════════════════════
+
+Notes:
+• Discount applies on orders > Rs 5000 (10%) or > Rs 2000 (5%)
+• GST is calculated at 18% on discounted amount
+• Please retain this receipt for your records
+
+─────────────────────────────────────────────────────────────────
+           Thank you for your business! Visit Again!              
+─────────────────────────────────────────────────────────────────
 ```
 
 
@@ -121,11 +152,12 @@ Final Amount: Rs 60534.00
 
 ## 🔮 Future Enhancements
 - Database Integration (MySQL + JDBC)
-- Bill history management
-- Customer profiles
+- Customer profiles and history
 - Inventory management
-- Print functionality
-- Multiple bill management in GUI
+- Print to PDF functionality
+- Search and filter bills
+- Tax configuration settings
+- Multi-currency support
 - JavaFX upgrade for modern UI
 - Spring Boot REST API Version  
 
