@@ -3,7 +3,7 @@
 ## 📌 Project Overview
 A Java-based Object-Oriented Billing Management System with a user-friendly Swing GUI for managing multiple items per bill. The system provides real-time item addition, discount calculation, GST processing, and automatic bill file generation.
 
-This project demonstrates strong OOPs principles, modular design, and scalable architecture suitable for retail and educational purposes.
+This project demonstrates strong OOP principles, modular design, and scalable architecture suitable for retail and educational purposes.
 
 ---
 
@@ -15,7 +15,7 @@ This project demonstrates strong OOPs principles, modular design, and scalable a
 - **Delete Items** - Remove items from the bill before finalizing
 - **View Past Bills** - Access all previously generated bills with timestamps
 - Discount calculation based on total amount (10% for >5000, 5% for >2000)
-- GST (18%) automatic calculation
+- GST (18%) automatic calculation (Hardcoded for now)
 - Professional invoice-style bill format with proper formatting
 - Bill persistence - Bills saved with customer name and timestamp
 - Input validation with error messages (JOptionPane)
